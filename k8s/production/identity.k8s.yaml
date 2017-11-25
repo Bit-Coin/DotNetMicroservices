@@ -21,7 +21,7 @@ spec:
     # and container settings
     spec:
       containers:
-      - name: identityprovider
+      - name: idp
         image: cleverices/dotnetmicroservices.idp
         ports:
         - containerPort: 80
