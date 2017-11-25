@@ -4,7 +4,7 @@ services:
 # main services
 
   dotnetmicroservices.spa:
-    image: dotnetmicroservices.spa
+    image: cleverices/dotnetmicroservices.spa
     build:
       context: ./DotNetMicroservices.SPA
       dockerfile: Dockerfile
@@ -12,7 +12,7 @@ services:
       - "4200:80"
 
   dotnetmicroservices.idp:
-    image: dotnetmicroservices.idp
+    image: cleverices/dotnetmicroservices.idp
     build:
       context: ./DotNetMicroservices.IDP
       dockerfile: Dockerfile
@@ -20,7 +20,7 @@ services:
       - "5000:80"
 
   dotnetmicroservices.api:
-    image: dotnetmicroservices.api
+    image: cleverices/dotnetmicroservices.api
     build:
       context: ./DotNetMicroservices.API
       dockerfile: Dockerfile
@@ -35,7 +35,7 @@ services:
       - "5432:5432"
 
   dotnetmicroservices.dbinitializer:
-    image: cleverices/interactivestories.dbinitializer
+    image: cleverices/dotnetmicroservices.dbinitializer
     build:
       context: ./DotNetMicroservices.DB
       dockerfile: Dockerfile
