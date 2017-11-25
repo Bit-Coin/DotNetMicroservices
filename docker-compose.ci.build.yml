@@ -23,3 +23,4 @@ services:
           dotnet restore ./DotNetMicroservices.IDP.Tests && 
           dotnet test ./DotNetMicroservices.IDP.Tests && 
           dotnet publish ./DotNetMicroservices.IDP -c Release -o ./obj/Docker/publish
+          "'
