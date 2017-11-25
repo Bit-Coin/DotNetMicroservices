@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  dotnetmicroservices.spa:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  dotnetmicroservices.idp:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  dotnetmicroservices.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  dotnetmicroservices.db:
+    environment:
+      - POSTGRES_USER=pgadmin
+      - POSTGRES_PASSWORD=123456

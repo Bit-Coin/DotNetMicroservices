@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  dotnetmicroservices.ci.api:
+    image: microsoft/aspnetcore-build:1.0-2.0
+    volumes:
+      - .:/src
+    working_dir: /src
+    command: '/bin/bash -c "
+          dotnet restore ./DotNetMicroservices.API && 
+          dotnet restore ./DotNetMicroservices.API.Tests &&
+          dotnet test ./DotNetMicroservices.API.Tests && 
+          dotnet publish ./DotNetMicroservices.API -c Release -o ./obj/Docker/publish
+          "'
+
+  dotnetmicroservices.ci.idp:
+    image: microsoft/aspnetcore-build:1.0-2.0
+    volumes:
+      - .:/src
+    working_dir: /src
+    command: '/bin/bash -c "
+          dotnet restore ./DotNetMicroservices.IDP && 
+          dotnet restore ./DotNetMicroservices.IDP.Tests && 
+          dotnet test ./DotNetMicroservices.IDP.Tests && 
+          dotnet publish ./DotNetMicroservices.IDP -c Release -o ./obj/Docker/publish

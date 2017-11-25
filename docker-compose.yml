@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+# main services
+
+  dotnetmicroservices.spa:
+    image: dotnetmicroservices.spa
+    build:
+      context: ./DotNetMicroservices.SPA
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+
+  dotnetmicroservices.idp:
+    image: dotnetmicroservices.idp
+    build:
+      context: ./DotNetMicroservices.IDP
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+
+  dotnetmicroservices.api:
+    image: dotnetmicroservices.api
+    build:
+      context: ./DotNetMicroservices.API
+      dockerfile: Dockerfile
+    ports:
+      - "5001:80"
+
+# additional services
+
+  dotnetmicroservices.db:
+    image: postgres
+    ports:
+      - "5432:5432"
+
+  dotnetmicroservices.dbinitializer:
+    image: cleverices/interactivestories.dbinitializer
+    build:
+      context: ./DotNetMicroservices.DB
+      dockerfile: Dockerfile
+    depends_on:
+      - dotnetmicroservices.db
