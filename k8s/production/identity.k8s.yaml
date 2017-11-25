@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: identityprovider
-        image: cleverices/interactivestories.identityprovider
+        image: cleverices/dotnetmicroservices.idp
         ports:
         - containerPort: 80
         env:
@@ -33,7 +33,7 @@ spec:
               key: database_connection
       initContainers:
       - name: dbinitializer
-        image: cleverices/interactivestories.dbinitializer
+        image: cleverices/dotnetmicroservices.dbinitializer
         env:
         - name: DatabaseConnection
           valueFrom:
