@@ -1,29 +1,26 @@
 language: csharp
 solution: DotNetMicroservices.sln
 services:
-  - docker
-
+- docker
 before_install:
-  - openssl aes-256-cbc -K $encrypted_86bd7ff4dac8_key -iv $encrypted_86bd7ff4dac8_iv -in gcloud_account_key.json.enc -out gcloud_account_key.json -d
-
+- openssl aes-256-cbc -k "$TRAVIS_ENC_KEY" -in  gcloud_account_key.json.enc -out  gcloud_account_key.json -d
 before_script:
-  - docker-compose --version
-  - docker-compose -f docker-compose.ci.build.yml up
-
+- docker-compose --version
+- docker-compose -f docker-compose.ci.build.yml up
 script:
-  - docker-compose build
-
-# install gcloud sdk
+- docker-compose build
 before_deploy:
-  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
-  - source /home/travis/google-cloud-sdk/path.bash.inc
-  - gcloud --quiet version
-  - gcloud --quiet components update
-  - gcloud --quiet components update kubectl
-  - chmod a+x ./scripts/deploy-staging.sh
-
-# deploy updated images on kubernetes cluster
+- if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export
+  CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
+- source /home/travis/google-cloud-sdk/path.bash.inc
+- gcloud --quiet version
+- gcloud --quiet components update
+- gcloud --quiet components update kubectl
+- chmod a+x ./scripts/deploy-staging.sh
 deploy:
-  - provider: script
-    script: ./deploy-on-k8s.sh
-    skip_cleanup: true
+- provider: script
+  script: "./deploy-on-k8s.sh"
+  skip_cleanup: true
+env:
+  global:
+  - secure: 3Q+kLAmAUEOjjVCHKsprztCR5Wx4lrpgiX0clxB+ORX0grhORk4yQdDIhzurMcf9VwcRYoy6k1wiPeSJ+lf7rOI6VAU6dW0OezUTzztPPTF2OdOOumCD6agDm31I/EhlPtkxWAZc6P1OqXbUvkXvRGkrM8BgKz0Y6WqtU899/gMVJ5kiZHVJiIrxLgN0vHLr3Lbga2/FxeGL+Gl/8adnATcgiqXKG1mxEGCn0I7VTwNgDhnNgK7PG93YjK1mGmVkkIGcyuZa5HlcnOp6cyqXwnIIScYGvBauml/obBDiEBRVh4y6hOCBXhzmWrREGoNGkGyoNy7kbcFWfGSrZ/kBjaiLJkdSzpH6thR1SHB6keyPN5CUlVvay/LdgCotpyHbDiLsIXfPHPwh/lqGFMQHXtggk4MnS/e9KRRxw/Ht0JBkQ5sMB7bTCE6rbuGDdxp4HaDNDOOylmmjF3z2pTe/Vv9G5KjeHb7t2Z9XpcmJzW6jgtjaseoEJMULQa9uLx82qGGiBJqShA8dze10ThLmVOo3UPRc+BfNPNFjxxLNZ95CE8hSB3N42t8RJA/9K/sduyRbVW5rK68CdzfyPQK9XL9RBElBFBLwBukxYfqCALcQTmhIm/mLQWHVBTByp8b/CHu6FLbvhB0eu+8s3OQe14O9sF1yrC+VsqHfw+n33Vg=
