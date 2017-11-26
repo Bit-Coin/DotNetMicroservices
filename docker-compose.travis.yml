@@ -40,4 +40,4 @@ services:
       context: ./DotNetMicroservices.DB
       dockerfile: Dockerfile
     depends_on:
-      - dotnetmicroservices.db
+      - db
