@@ -16,10 +16,10 @@ export SPA_IMAGE_NAME=cleverices/dotnetmicroservices.spa
 	   DBINITIALIZER_IMAGE_NAME=cleverices/dotnetmicroservices.dbinitializer
 
 echo "create tag reference with commit id on docker images"
-docker tag ${SPA_IMAGE_NAME}:$TRAVIS_COMMIT
-docker tag ${API_IMAGE_NAME}:$TRAVIS_COMMIT
-docker tag ${IDP_IMAGE_NAME}:$TRAVIS_COMMIT
-docker tag ${DBINITIALIZER_IMAGE_NAME}:$TRAVIS_COMMIT
+docker tag ${SPA_IMAGE_NAME}:latest ${SPA_IMAGE_NAME}:$TRAVIS_COMMIT
+docker tag ${API_IMAGE_NAME}:latest ${API_IMAGE_NAME}:$TRAVIS_COMMIT
+docker tag ${IDP_IMAGE_NAME}:latest ${IDP_IMAGE_NAME}:$TRAVIS_COMMIT
+docker tag ${DBINITIALIZER_IMAGE_NAME}:latest ${DBINITIALIZER_IMAGE_NAME}:$TRAVIS_COMMIT
 
 echo "Login to Docker Hub"
 docker login --username ${DOCKERHUB_USERNAME} --password ${DOCKERHUB_PASSWORD}
