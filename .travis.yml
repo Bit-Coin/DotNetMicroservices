@@ -1,0 +1,29 @@
+language: csharp
+solution: DotNetMicroservices.sln
+services:
+  - docker
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_8d19ab74f1ed_key -iv $encrypted_8d19ab74f1ed_iv -in gcloud_account_key.json.enc -out gcloud_account_key.json -d
+
+before_script:
+  - docker-compose --version
+  - docker-compose -f docker-compose.ci.build.yml up
+
+script:
+  - docker-compose build
+
+# install gcloud sdk
+before_deploy:
+  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
+  - source /home/travis/google-cloud-sdk/path.bash.inc
+  - gcloud --quiet version
+  - gcloud --quiet components update
+  - gcloud --quiet components update kubectl
+  - chmod a+x ./scripts/deploy-staging.sh
+
+# deploy updated images on kubernetes cluster
+deploy:
+  - provider: script
+    script: ./deploy-on-k8s.sh
+    skip_cleanup: true
