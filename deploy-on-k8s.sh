@@ -40,6 +40,6 @@ gcloud --quiet config set compute/zone ${CLOUDSDK_COMPUTE_ZONE}
 gcloud --quiet container clusters get-credentials ${GCLOUD_CLUSTER_NAME}
 
 echo "Update k8s deployments with updated images"
-kubectl set image deployment/spa-deployment nginx=${SPA_IMAGE_NAME}:$TRAVIS_COMMIT
-kubectl set image deployment/api-deployment app=${API_IMAGE_NAME}:$TRAVIS_COMMIT
-kubectl set image deployment/idp-deployment worker=${IDP_IMAGE_NAME}:$TRAVIS_COMMIT
+kubectl set image deployment/spa-deployment spa=${SPA_IMAGE_NAME}:$TRAVIS_COMMIT
+kubectl set image deployment/api-deployment api=${API_IMAGE_NAME}:$TRAVIS_COMMIT
+kubectl set image deployment/idp-deployment idp=${IDP_IMAGE_NAME}:$TRAVIS_COMMIT
