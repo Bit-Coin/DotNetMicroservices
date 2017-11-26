@@ -1,4 +1,4 @@
-FROM microsoft/aspnetcore-build:2.0 AS builder
+FROM microsoft/aspnetcore-build AS builder
 
 # Install Google Chrome
 RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
