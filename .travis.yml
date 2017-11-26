@@ -22,7 +22,7 @@ before_deploy:
 - gcloud --quiet version
 - gcloud --quiet components update
 - gcloud --quiet components update kubectl
-- chmod a+x ./scripts/deploy-staging.sh
+- chmod a+x ./deploy-on-k8s.sh
 deploy:
 - provider: script
   script: "./deploy-on-k8s.sh"
