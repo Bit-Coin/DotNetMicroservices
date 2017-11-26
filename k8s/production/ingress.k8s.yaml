@@ -22,5 +22,5 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: identity-service
+          serviceName: idp-service
           servicePort: 5000

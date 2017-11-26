@@ -1,7 +1,7 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: identity-deployment
+  name: idp-deployment
   #labels:
   #  app: client-deployment
 spec:
@@ -10,13 +10,13 @@ spec:
   # In our case we simply select pods with label "app: nginx"
   selector:
     matchLabels:
-      app: identity
+      app: idp
   # describe our pods
   template:
     # set up pod with label "app: nginx"
     metadata:
       labels:
-        app: identity
+        app: idp
     # describe the "content" of the pod: what container to run
     # and container settings
     spec:
@@ -47,7 +47,7 @@ apiVersion: v1
 metadata:
   # set service name and label
   # also name will be DNS name of the service
-  name: identity-service
+  name: idp-service
   #labels:
   #  app: client-service
 spec:
@@ -57,7 +57,7 @@ spec:
   type: NodePort
   # Defines how we match pods to service. In our case - map to service pods with label "app: nginx"
   selector:
-    app: identity
+    app: idp
   ports:
   - protocol: TCP
     # expose specified port of the containers, running inside each pod of the service

@@ -16,7 +16,7 @@ RUN cd ClientApp && $(npm bin)/ng test --config karma.conf.prod.js && cd ..
 
 RUN dotnet publish -c Release -o /app/
 
-FROM microsoft/aspnetcore
+FROM microsoft/aspnetcore:2.0
 
 # install node.js for SSR
 RUN apt-get update && apt-get install -my gnupg
