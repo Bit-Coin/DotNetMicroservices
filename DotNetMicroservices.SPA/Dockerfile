@@ -1,4 +1,4 @@
-FROM microsoft/aspnetcore-build AS builder
+FROM microsoft/aspnetcore-build:2.0 AS builder
 
 # Install Google Chrome
 RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -16,7 +16,7 @@ RUN cd ClientApp && $(npm bin)/ng test --config karma.conf.prod.js && cd ..
 
 RUN dotnet publish -c Release -o /app/
 
-FROM microsoft/aspnetcore
+FROM microsoft/aspnetcore:2.0
 
 # install node.js for SSR
 RUN apt-get update && apt-get install -my gnupg
