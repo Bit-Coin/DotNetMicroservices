@@ -31,7 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "production", "production", 
 	ProjectSection(SolutionItems) = preProject
 		k8s\production\api.k8s.yaml = k8s\production\api.k8s.yaml
 		k8s\production\database.k8s.yaml = k8s\production\database.k8s.yaml
-		k8s\production\identity.k8s.yaml = k8s\production\identity.k8s.yaml
+		k8s\production\idp.k8s.yaml = k8s\production\idp.k8s.yaml
 		k8s\production\ingress.k8s.yaml = k8s\production\ingress.k8s.yaml
 		k8s\production\spa.k8s.yaml = k8s\production\spa.k8s.yaml
 	EndProjectSection
