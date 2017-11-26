@@ -9,6 +9,8 @@
     <DockerServiceName>dotnetmicroservices.spa</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="docker-compose.travis.override.yml" />
+    <None Include="docker-compose.travis.yml" />
     <None Include="docker-compose.ci.build.yml" />
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
