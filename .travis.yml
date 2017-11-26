@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
-  -  openssl aes-256-cbc -K $encrypted_8d19ab74f1ed_key -iv $encrypted_8d19ab74f1ed_iv -in gcloud_account_key.json.enc -out gcloud_account_key.json -d
+  - openssl aes-256-cbc -K $encrypted_86bd7ff4dac8_key -iv $encrypted_86bd7ff4dac8_iv -in gcloud_account_key.json.enc -out gcloud_account_key.json -d
 
 before_script:
   - docker-compose --version
