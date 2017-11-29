@@ -1,9 +1,11 @@
-FROM microsoft/aspnetcore-build:2.0
+FROM microsoft/aspnetcore-build
 
-WORKDIR /source
+COPY . /app
 
-COPY . .
+WORKDIR /app
 
 RUN ["dotnet", "restore"]
+
+RUN ["dotnet", "build"]
 
 CMD chmod +x ./initialize.sh && /bin/bash ./initialize.sh

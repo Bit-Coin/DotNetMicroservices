@@ -3,15 +3,15 @@ version: '3'
 services:
   dotnetmicroservices.spa:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Production
 
   dotnetmicroservices.idp:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Production
 
   dotnetmicroservices.api:
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_ENVIRONMENT=Production
 
   dotnetmicroservices.db:
     environment:

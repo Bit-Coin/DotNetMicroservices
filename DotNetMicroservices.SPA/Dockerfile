@@ -12,8 +12,9 @@ COPY . .
 # restore nuget packages and install npm dependencies
 RUN dotnet build
 
-RUN cd ClientApp && $(npm bin)/ng test --config karma.conf.prod.js && cd ..
+RUN cd ClientApp && $(npm bin)/ng test --config karma.conf.prod.js
 
+RUN ls
 RUN dotnet publish -c Release -o /app/
 
 FROM microsoft/aspnetcore:2.0
