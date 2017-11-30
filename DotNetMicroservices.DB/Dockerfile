@@ -1,11 +1,17 @@
-FROM microsoft/aspnetcore-build
+FROM microsoft/dotnet:sdk AS builder
+WORKDIR /source
 
-COPY . /app
+COPY *.csproj .
 
+RUN dotnet restore
+
+COPY . .
+
+RUN dotnet publish -c Release -o /app/
+
+FROM microsoft/dotnet:2.0-runtime 
 WORKDIR /app
 
-RUN ["dotnet", "restore"]
+COPY --from=builder /app .
 
-RUN ["dotnet", "build"]
-
-CMD chmod +x ./initialize.sh && /bin/bash ./initialize.sh
+ENTRYPOINT ["dotnet", "DotNetMicroservices.DB.dll"]

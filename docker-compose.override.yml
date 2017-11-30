@@ -17,3 +17,7 @@ services:
     environment:
       - POSTGRES_USER=pgadmin
       - POSTGRES_PASSWORD=123456
+
+  dotnetmicroservices.dbinitializer:
+    environment:
+      - DatabaseConnection=Server=dotnetmicroservices.db;Database=InteractiveStories;Username=pgadmin;Password=123456

@@ -17,7 +17,7 @@ services:
     ports:
       - "5000:80"
     depends_on:
-      - "dotnetmicroservices.db"
+      - dotnetmicroservices.db
 
   dotnetmicroservices.api:
     image: cleverices/dotnetmicroservices.api
@@ -27,9 +27,17 @@ services:
     ports:
       - "5001:80"
     depends_on:
-      - "dotnetmicroservices.db"
+      - dotnetmicroservices.db
 
   dotnetmicroservices.db:
     image: postgres
     ports:
       - "5432:5432"
+
+  dotnetmicroservices.dbinitializer:
+    image: cleverices/dotnetmicroservices.db
+    build:
+      context: ./DotNetMicroservices.DB
+      dockerfile: Dockerfile
+    depends_on:
+      - dotnetmicroservices.db

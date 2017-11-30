@@ -18,6 +18,11 @@ namespace DotNetMicroservices.DB.Data
         {
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var configBuilder = new Config();
+            optionsBuilder.UseNpgsql(configBuilder.Configuration["DatabaseConnection"]);
+        }
 
         // db sets goes here
 
