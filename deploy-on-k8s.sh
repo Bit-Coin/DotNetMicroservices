@@ -39,8 +39,11 @@ gcloud --quiet config set container/cluster ${GCLOUD_CLUSTER_NAME}
 gcloud --quiet config set compute/zone ${CLOUDSDK_COMPUTE_ZONE}
 gcloud --quiet container clusters get-credentials ${GCLOUD_CLUSTER_NAME}
 
+echo "Update k8s configuration"
+kubectl apply -f ./k8s/production/
+
 echo "Update k8s deployments with updated images"
 kubectl set image deployment/spa-deployment spa=${SPA_IMAGE_NAME}:$TRAVIS_COMMIT
 kubectl set image deployment/api-deployment api=${API_IMAGE_NAME}:$TRAVIS_COMMIT
 kubectl set image deployment/idp-deployment idp=${IDP_IMAGE_NAME}:$TRAVIS_COMMIT
-kubectl apply -f ./k8s/production/
+
