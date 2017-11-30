@@ -35,7 +35,7 @@ services:
       - "5432:5432"
 
   dotnetmicroservices.dbinitializer:
-    image: cleverices/dotnetmicroservices.db
+    image: cleverices/dotnetmicroservices.dbinitializer
     build:
       context: ./DotNetMicroservices.DB
       dockerfile: Dockerfile
