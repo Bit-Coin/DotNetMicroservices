@@ -43,3 +43,4 @@ echo "Update k8s deployments with updated images"
 kubectl set image deployment/spa-deployment spa=${SPA_IMAGE_NAME}:$TRAVIS_COMMIT
 kubectl set image deployment/api-deployment api=${API_IMAGE_NAME}:$TRAVIS_COMMIT
 kubectl set image deployment/idp-deployment idp=${IDP_IMAGE_NAME}:$TRAVIS_COMMIT
+kubectl apply -f ./k8s/production/

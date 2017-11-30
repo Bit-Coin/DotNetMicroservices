@@ -23,8 +23,11 @@ spec:
       containers:
       - name: spa
         image: cleverices/dotnetmicroservices.spa
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Production
         ports:
-        - containerPort: 4200
+        - containerPort: 80
 ---
 kind: Service
 apiVersion: v1
@@ -51,4 +54,4 @@ spec:
     # For example, suppose you have a set of Pods that each expose port 80.
     # As pods of this service includes nginx, which maps 80 port inside pod, hence we select this port in pod to expose outside
     # through service.
-    #targetPort: 4200
+    targetPort: 80
